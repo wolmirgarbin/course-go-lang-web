@@ -7,15 +7,19 @@ import (
 
 var templates = template.Must(template.ParseGlob("templates/*.html"))
 
-func ViewListProducts(w http.ResponseWriter, r *http.Request) {
+func GetViewListProducts(w http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(w, "Index", ListProducts())
 }
 
-func ViewFormNew(w http.ResponseWriter, r *http.Request) {
+func GetViewFormNew(w http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(w, "New", nil)
 }
 
-func ControllerInsert(w http.ResponseWriter, r *http.Request) {
+func GetViewEdit(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "Edit", GetById(r.URL.Query().Get("id")))
+}
+
+func PostInsert(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		Save(ProductReceiver(r))
 		http.Redirect(w, r, "/", 301)
@@ -23,7 +27,14 @@ func ControllerInsert(w http.ResponseWriter, r *http.Request) {
 	http.NotFound(w, r)
 }
 
-func ControllerDelete(w http.ResponseWriter, r *http.Request) {
+func GetDelete(w http.ResponseWriter, r *http.Request) {
 	Delete(r.URL.Query().Get("id"))
 	http.Redirect(w, r, "/", 301)
+}
+
+func PostUpdate(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		Edit(ProductReceiver(r))
+		http.Redirect(w, r, "/", 301)
+	}
 }

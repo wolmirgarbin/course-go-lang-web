@@ -4,8 +4,10 @@ import "net/http"
 
 // Arquivo de rotas
 func CreateRoutes() {
-	http.HandleFunc("/", ViewListProducts)
-	http.HandleFunc("/new", ViewFormNew)
-	http.HandleFunc("/insert", ControllerInsert)
-	http.HandleFunc("/delete", ControllerDelete)
+	http.HandleFunc("/", GetViewListProducts)
+	http.HandleFunc("/new", GetViewFormNew)
+	http.HandleFunc("/edit", GetViewEdit)
+	http.HandleFunc("/insert", PostInsert)
+	http.HandleFunc("/delete", GetDelete)
+	http.HandleFunc("/update", PostUpdate)
 }

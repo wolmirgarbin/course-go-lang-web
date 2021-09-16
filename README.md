@@ -11,3 +11,12 @@ Ainda tenho muito que aprender e estarei me aprofundando em questões de organiz
 Caso tenham alguma sugestão, ficaria feliz em receber feedbacks sobre o modelo adotado.
 
 Caso queira executar em seu PC, basta rodar: `go run main.go`.
+
+### O que o projeto tem?
+
+Listagem de itens:
+
+Cadastro de itens:
+
+Edição de itens:
+
